@@ -8,16 +8,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 # 환경변수에서 SECRET_KEY 가져오기 (기본값은 개발용)
-SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-7s5m0#5cfyxg8cf=2shff(1g)&1izp+*^jez_&s!z*g93l*h51')
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 ALLOWED_HOSTS = ['*']
 DEBUG = True
 
-CSRF_TRUSTED_ORIGINS = [
-    "http://127.0.0.1:7999",  # 로컬 개발 환경
-    "http://localhost:7999",
-    "http://0.0.0.0:7999",  # Docker 환경에서 실행 시
-]
+CSRF_TRUSTED_ORIGINS = ["*"]
 
 CSRF_USE_SESSIONS = True
 
@@ -153,12 +149,12 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 # 환경변수에서 데이터베이스 설정 가져오기
-DB_ENGINE = os.environ.get("DB_ENGINE", "django.db.backends.postgresql_psycopg2")
-DB_NAME = os.environ.get("DB_NAME", "inventory-db")
-DB_USER = os.environ.get("DB_USER", "LocalMaster")
-DB_HOST = os.environ.get("DB_HOST", "db")
-DB_PASSWORD = os.environ.get("DB_PASSWORD", "q1w2e3!!")
-DB_PORT = os.environ.get("DB_PORT", "5432")
+DB_ENGINE = os.environ.get("DB_ENGINE")
+DB_NAME = os.environ.get("DB_NAME")
+DB_USER = os.environ.get("DB_USER")
+DB_HOST = os.environ.get("DB_HOST")
+DB_PASSWORD = os.environ.get("DB_PASSWORD")
+DB_PORT = os.environ.get("DB_PORT")
 
 # 테스트 환경에서는 SQLite 사용
 if 'test' in sys.argv or os.environ.get('TESTING') == 'true':
@@ -242,5 +238,5 @@ MEDIA_URL = '/media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # 환경변수에서 API URL 가져오기
-INVENTORY_API_BASE_URL = os.environ.get("INVENTORY_API_BASE_URL", "http://210.183.209.152:7999/api/")
-INVENTORY_BASE_URL = os.environ.get("INVENTORY_BASE_URL", "http://210.183.209.152:7999/")
+INVENTORY_API_BASE_URL = os.environ.get("INVENTORY_API_BASE_URL")
+INVENTORY_BASE_URL = os.environ.get("INVENTORY_BASE_URL")
